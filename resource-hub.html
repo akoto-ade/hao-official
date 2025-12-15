@@ -750,6 +750,155 @@
                 </div>
 
                 <div class="card">
+                    <div class="card-icon">📚</div>
+                    <h3>Training Manuals</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Digital Skills Curriculum</li>
+                        <li>Agricultural Best Practices</li>
+                        <li>Small Business Management</li>
+                        <li>Community Leadership Guide</li>
+                        <li>Financial Literacy Handbook</li>
+                    </ul>
+                    <a href="#" class="btn" style="display: inline-block; padding: 0.5rem 1.5rem; font-size: 0.9rem;">Download All (PDF)</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔬</div>
+                    <h3>Research & Reports</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Community Needs Assessment</li>
+                        <li>Impact Evaluation Reports</li>
+                        <li>Market Research Studies</li>
+                        <li>Youth Employment Survey</li>
+                        <li>Agriculture Sector Analysis</li>
+                    </ul>
+                    <a href="#" class="btn" style="display: inline-block; padding: 0.5rem 1.5rem; font-size: 0.9rem;">Download All (PDF)</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📖</div>
+                    <h3>Educational Materials</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Study Guides & Notes</li>
+                        <li>Past Questions Repository</li>
+                        <li>Career Guidance Resources</li>
+                        <li>Scholarship Application Tips</li>
+                        <li>College Preparation Materials</li>
+                    </ul>
+                    <a href="#" class="btn" style="display: inline-block; padding: 0.5rem 1.5rem; font-size: 0.9rem;">Download All (PDF)</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">💡</div>
+                    <h3>Business Resources</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Business Plan Templates</li>
+                        <li>Marketing Strategy Guides</li>
+                        <li>Financial Planning Tools</li>
+                        <li>Legal Compliance Checklist</li>
+                        <li>Funding Opportunity Lists</li>
+                    </ul>
+                    <a href="#" class="btn" style="display: inline-block; padding: 0.5rem 1.5rem; font-size: 0.9rem;">Download All (PDF)</a>
+                </div>
+            </div>
+
+            <div class="notice-board">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">📌 Recently Added</h3>
+                <div class="notice">
+                    <div class="notice-date">📅 December 12, 2025</div>
+                    <div class="notice-title">2026 Scholarship Application Guidelines</div>
+                    <p>Complete guide for applying to various scholarship programs. Includes eligibility criteria and application tips.</p>
+                </div>
+                <div class="notice">
+                    <div class="notice-date">📅 December 8, 2025</div>
+                    <div class="notice-title">Sustainable Farming Practices Manual</div>
+                    <p>Comprehensive guide on modern, eco-friendly farming techniques for small-scale farmers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">HAO Homepage</a>
+                <a href="#" onclick="showPage('home'); return false;">Hub Home</a>
+                <a href="#" onclick="showPage('resources'); return false;">Resources</a>
+                <a href="#" onclick="showPage('projects'); return false;">Projects</a>
+                <a href="#" onclick="showPage('library'); return false;">Library</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="#" onclick="showPage('resources'); return false;">Education & Training</a>
+                <a href="#" onclick="showPage('resources'); return false;">Agriculture & Farming</a>
+                <a href="#" onclick="showPage('resources'); return false;">Health Services</a>
+                <a href="#" onclick="showPage('resources'); return false;">Employment</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Get Involved</h4>
+                <a href="index.html#contact">Volunteer</a>
+                <a href="index.html#contact">Partner With Us</a>
+                <a href="index.html#contact">Donate</a>
+                <a href="index.html#contact">Community Events</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Jasikan Municipality<br>Oti Region, Ghana</p>
+                <p>Email: info@humbleafricanz.org</p>
+                <p>Phone: +233 XX XXX XXXX</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Humble Africanz Organization. All rights reserved.</p>
+            <p>Empowering Communities • Transforming Lives</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            window.scrollTo(0, 0);
+            
+            const nav = document.getElementById('nav');
+            if (nav) {
+                nav.classList.remove('active');
+            }
+        }
+
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            if (nav) {
+                nav.classList.toggle('active');
+            }
+        }
+
+        const searchBox = document.querySelector('.search-box');
+        if (searchBox) {
+            searchBox.addEventListener('input', function(e) {
+                const query = e.target.value.toLowerCase();
+                if (query.length > 2) {
+                    console.log('Searching for:', query);
+                }
+            });
+        }
+    </script>
+</body>
+</html>.9rem;">Download All (PDF)</a>
+                </div>
+
+                <div class="card">
                     <div class="card-icon">📋</div>
                     <h3>Government Forms</h3>
                     <ul style="margin: 1rem 0 1rem 1.5rem;">
@@ -759,26 +908,153 @@
                         <li>School Admission Forms</li>
                         <li>Tax Clearance Forms</li>
                     </ul>
+                    <a href="#" class="btn" style="display: inline-block; padding: 0.5rem 1.5rem; font-size: 0.9rem;">Download All (PDF)</a>
+                </div>
 
-        <!-- CTA Button -->
-        <div style="text-align: center;">
-            <a href="resource-hub.html" style="display: inline-block; background: #d4af37; color: #1e3a8a; padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1rem; transition: all 0.3s; box-shadow: 0 4px 15px rgba(212,175,55,0.3);"
-               onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(212,175,55,0.5)'"
-               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(212,175,55,0.3)'">
-                Explore All Resources →
-            </a>
+                <div class="card">
+                    <div class="card-icon">📚</div>
+                    <h3>Training Manuals</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Digital Skills Curriculum</li>
+                        <li>Agricultural Best Practices</li>
+                        <li>Small Business Management</li>
+                        <li>Community Leadership Guide</li>
+                        <li>Financial Literacy Handbook</li>
+                    </ul>
+                    <a href="#" class="btn" style="display: inline-block; padding: 0.5rem 1.5rem; font-size: 0.9rem;">Download All (PDF)</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔬</div>
+                    <h3>Research & Reports</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Community Needs Assessment</li>
+                        <li>Impact Evaluation Reports</li>
+                        <li>Market Research Studies</li>
+                        <li>Youth Employment Survey</li>
+                        <li>Agriculture Sector Analysis</li>
+                    </ul>
+                    <a href="#" class="btn" style="display: inline-block; padding: 0.5rem 1.5rem; font-size: 0.9rem;">Download All (PDF)</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📖</div>
+                    <h3>Educational Materials</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Study Guides & Notes</li>
+                        <li>Past Questions Repository</li>
+                        <li>Career Guidance Resources</li>
+                        <li>Scholarship Application Tips</li>
+                        <li>College Preparation Materials</li>
+                    </ul>
+                    <a href="#" class="btn" style="display: inline-block; padding: 0.5rem 1.5rem; font-size: 0.9rem;">Download All (PDF)</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">💡</div>
+                    <h3>Business Resources</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Business Plan Templates</li>
+                        <li>Marketing Strategy Guides</li>
+                        <li>Financial Planning Tools</li>
+                        <li>Legal Compliance Checklist</li>
+                        <li>Funding Opportunity Lists</li>
+                    </ul>
+                    <a href="#" class="btn" style="display: inline-block; padding: 0.5rem 1.5rem; font-size: 0.9rem;">Download All (PDF)</a>
+                </div>
+            </div>
+
+            <div class="notice-board">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">📌 Recently Added</h3>
+                <div class="notice">
+                    <div class="notice-date">📅 December 12, 2025</div>
+                    <div class="notice-title">2026 Scholarship Application Guidelines</div>
+                    <p>Complete guide for applying to various scholarship programs. Includes eligibility criteria and application tips.</p>
+                </div>
+                <div class="notice">
+                    <div class="notice-date">📅 December 8, 2025</div>
+                    <div class="notice-title">Sustainable Farming Practices Manual</div>
+                    <p>Comprehensive guide on modern, eco-friendly farming techniques for small-scale farmers.</p>
+                </div>
+            </div>
         </div>
     </div>
-</section>
 
-<!-- Responsive Styles -->
-<style>
-    @media (max-width: 768px) {
-        #resource-hub h2 {
-            font-size: 1.8rem !important;
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">HAO Homepage</a>
+                <a href="#" onclick="showPage('home'); return false;">Hub Home</a>
+                <a href="#" onclick="showPage('resources'); return false;">Resources</a>
+                <a href="#" onclick="showPage('projects'); return false;">Projects</a>
+                <a href="#" onclick="showPage('library'); return false;">Library</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="#" onclick="showPage('resources'); return false;">Education & Training</a>
+                <a href="#" onclick="showPage('resources'); return false;">Agriculture & Farming</a>
+                <a href="#" onclick="showPage('resources'); return false;">Health Services</a>
+                <a href="#" onclick="showPage('resources'); return false;">Employment</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Get Involved</h4>
+                <a href="index.html#contact">Volunteer</a>
+                <a href="index.html#contact">Partner With Us</a>
+                <a href="index.html#contact">Donate</a>
+                <a href="index.html#contact">Community Events</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Jasikan Municipality<br>Oti Region, Ghana</p>
+                <p>Email: info@humbleafricanz.org</p>
+                <p>Phone: +233 XX XXX XXXX</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Humble Africanz Organization. All rights reserved.</p>
+            <p>Empowering Communities • Transforming Lives</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            window.scrollTo(0, 0);
+            
+            const nav = document.getElementById('nav');
+            if (nav) {
+                nav.classList.remove('active');
+            }
         }
-        #resource-hub p {
-            font-size: 1rem !important;
+
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            if (nav) {
+                nav.classList.toggle('active');
+            }
         }
-    }
-  </style>
+
+        const searchBox = document.querySelector('.search-box');
+        if (searchBox) {
+            searchBox.addEventListener('input', function(e) {
+                const query = e.target.value.toLowerCase();
+                if (query.length > 2) {
+                    console.log('Searching for:', query);
+                }
+            });
+        }
+    </script>
+</body>
+                    </html>
