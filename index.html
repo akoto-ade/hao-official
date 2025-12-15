@@ -662,143 +662,553 @@
             <p>Building a compassionate and inclusive society - one community at a time.</p>
         </div>
     </footer>
-</body>
-</html><section id="resource-hub" style="padding: 4rem 2rem; background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-        <!-- Section Header -->
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <div style="display: inline-block; background: #d4af37; color: #1e3a8a; padding: 0.5rem 1.5rem; border-radius: 25px; font-weight: bold; margin-bottom: 1rem;">
-                📍 Jasikan Municipality
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Resource Hub - Humble Africanz</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #1e3a8a; --gold: #d4af37; --light-blue: #3b82f6;
+            --white: #ffffff; --gray: #f3f4f6; --dark: #1f2937;
+        }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; color: var(--dark); background: var(--gray); }
+        nav { background: linear-gradient(135deg, var(--primary), var(--light-blue)); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: var(--white); font-size: 1.5rem; font-weight: bold; }
+        .logo-accent { color: var(--gold); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--white); text-decoration: none; font-weight: 500; transition: all 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+        .menu-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
+        .hero { background: linear-gradient(rgba(30,58,138,0.85), rgba(30,58,138,0.85)), linear-gradient(135deg, var(--light-blue), var(--primary)); color: var(--white); padding: 5rem 2rem; text-align: center; animation: fadeIn 1s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .hero-accent { color: var(--gold); }
+        .hero p { font-size: 1.3rem; max-width: 700px; margin: 0 auto 2rem; }
+        .badge { display: inline-block; background: var(--gold); color: var(--primary); padding: 0.5rem 1.5rem; border-radius: 25px; font-weight: bold; margin-bottom: 1.5rem; }
+        .search-box { max-width: 600px; margin: 2rem auto 0; padding: 1rem 1.5rem; border: none; border-radius: 50px; font-size: 1rem; width: 90%; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem; }
+        .section-title { text-align: center; font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem; position: relative; }
+        .section-title::after { content: ''; display: block; width: 80px; height: 4px; background: var(--gold); margin: 10px auto; }
+        .section-subtitle { text-align: center; color: var(--dark); margin-bottom: 3rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .card { background: var(--white); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s; border-top: 4px solid var(--primary); }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); border-top-color: var(--gold); }
+        .card-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .card h3 { color: var(--primary); margin-bottom: 1rem; }
+        .card p { color: var(--dark); margin-bottom: 0.5rem; }
+        .badge-count { background: var(--light-blue); color: var(--white); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.9rem; font-weight: bold; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .stat { background: var(--white); padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-bottom: 4px solid var(--gold); }
+        .stat-num { font-size: 2.5rem; font-weight: bold; color: var(--primary); }
+        .notice-board { background: var(--white); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 3rem 0; }
+        .notice { padding: 1.5rem; border-left: 4px solid var(--gold); background: var(--gray); margin-bottom: 1rem; border-radius: 0 8px 8px 0; transition: all 0.3s; }
+        .notice:hover { background: #e5e7eb; border-left-width: 6px; }
+        .notice-date { color: var(--light-blue); font-weight: bold; font-size: 0.9rem; }
+        .notice-title { color: var(--primary); font-size: 1.2rem; margin: 0.5rem 0; }
+        .featured { background: linear-gradient(135deg, var(--primary), var(--light-blue)); color: var(--white); padding: 4rem 2rem; margin: 3rem 0; border-radius: 12px; }
+        .featured h2 { text-align: center; margin-bottom: 2rem; }
+        .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .featured-item { background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 8px; backdrop-filter: blur(10px); transition: all 0.3s; }
+        .featured-item:hover { background: rgba(255,255,255,0.2); transform: scale(1.05); }
+        .featured-item h4 { color: var(--gold); margin-bottom: 0.5rem; }
+        .cta { text-align: center; margin: 3rem 0; }
+        .btn { display: inline-block; background: var(--gold); color: var(--primary); padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(212,175,55,0.5); }
+        footer { background: var(--primary); color: var(--white); padding: 3rem 2rem 1rem; margin-top: 4rem; }
+        .footer-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h4 { color: var(--gold); margin-bottom: 1rem; }
+        .footer-section a { color: var(--white); text-decoration: none; display: block; margin-bottom: 0.5rem; transition: color 0.3s; }
+        .footer-section a:hover { color: var(--gold); }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.5s; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary); padding: 1rem; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">🌍 HUMBLE <span class="logo-accent">AFRICANZ</span></div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="nav">
+                <li><a href="index.html">← Back to Home</a></li>
+                <li><a href="#" onclick="showPage('home')">Hub Home</a></li>
+                <li><a href="#" onclick="showPage('resources')">Resources</a></li>
+                <li><a href="#" onclick="showPage('projects')">Projects</a></li>
+                <li><a href="#" onclick="showPage('library')">Library</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="badge">📍 Jasikan Municipality</div>
+            <h1>Community <span class="hero-accent">Resource Hub</span></h1>
+            <p>Empowering our community by connecting people to opportunities, services, and information.</p>
+            <input type="text" class="search-box" placeholder="Search for opportunities, services, information...">
+        </section>
+
+        <div class="container">
+            <h2 class="section-title">Resource Categories</h2>
+            <p class="section-subtitle">Explore resources designed to support our community</p>
+
+            <div class="grid">
+                <div class="card" onclick="showPage('resources')">
+                    <div class="card-icon">📚</div>
+                    <h3>Education & Training</h3>
+                    <p>Scholarships, skills training, mentorship programs, and youth development.</p>
+                    <span class="badge-count">5 Programs</span>
+                </div>
+
+                <div class="card" onclick="showPage('resources')">
+                    <div class="card-icon">🌾</div>
+                    <h3>Agriculture & Farming</h3>
+                    <p>Extension services, farmer groups, input suppliers, and training.</p>
+                    <span class="badge-count">4 Services</span>
+                </div>
+
+                <div class="card" onclick="showPage('resources')">
+                    <div class="card-icon">🏥</div>
+                    <h3>Health & Social Welfare</h3>
+                    <p>Hospital, CHPS compounds, and community health services.</p>
+                    <span class="badge-count">3 Facilities</span>
+                </div>
+
+                <div class="card" onclick="showPage('resources')">
+                    <div class="card-icon">💼</div>
+                    <h3>Employment & Skills</h3>
+                    <p>Youth employment orientation, skills referral, and mentorship.</p>
+                    <span class="badge-count">3 Programs</span>
+                </div>
+
+                <div class="card" onclick="showPage('resources')">
+                    <div class="card-icon">🏛️</div>
+                    <h3>Community Services</h3>
+                    <p>Municipal Assembly, NGOs, faith-based organizations, and groups.</p>
+                    <span class="badge-count">6 Organizations</span>
+                </div>
+
+                <div class="card" onclick="showPage('resources')">
+                    <div class="card-icon">🎨</div>
+                    <h3>Recreation & Tourism</h3>
+                    <p>Last of Falls, natural sites, and community recreational areas.</p>
+                    <span class="badge-count">2 Sites</span>
+                </div>
             </div>
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Community <span style="color: #d4af37;">Resource Hub</span></h2>
-            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">Your one-stop portal for opportunities, services, and information that empower our community.</p>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-num">20+</div>
+                    <div>Available Resources</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">4</div>
+                    <div>Active Projects</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">13+</div>
+                    <div>Partner Organizations</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">550+</div>
+                    <div>Community Members Reached</div>
+                </div>
+            </div>
+
+            <div class="notice-board">
+                <h2 style="color: var(--primary); margin-bottom: 1.5rem;">📢 Community Notice Board</h2>
+                
+                <div class="notice">
+                    <div class="notice-date">📅 Upcoming - Next 30 Days</div>
+                    <div class="notice-title">Community Environmental Awareness Session</div>
+                    <p>Community engagement on environmental responsibility and sustainable practices. Open to youth, volunteers, and all community members.</p>
+                </div>
+
+                <div class="notice">
+                    <div class="notice-date">📅 Upcoming Quarter</div>
+                    <div class="notice-title">Youth Skills Orientation Program</div>
+                    <p>Introduction to skills development and employment pathways for youth aged 18-35 years. Registration details coming soon.</p>
+                </div>
+
+                <div class="notice">
+                    <div class="notice-date">📅 Seasonal - Planting Period</div>
+                    <div class="notice-title">Agricultural Sensitisation Workshop</div>
+                    <p>Basic training on sustainable farming practices for local farmers and farmer groups. Hands-on sessions with MoFA extension officers.</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Stats Grid -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-            <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; text-align: center; backdrop-filter: blur(10px);">
-                <div style="font-size: 2.5rem; font-weight: bold; color: #d4af37;">122</div>
-                <div style="margin-top: 0.5rem;">Total Resources</div>
-            </div>
-            <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; text-align: center; backdrop-filter: blur(10px);">
-                <div style="font-size: 2.5rem; font-weight: bold; color: #d4af37;">8</div>
-                <div style="margin-top: 0.5rem;">Active Projects</div>
-            </div>
-            <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; text-align: center; backdrop-filter: blur(10px);">
-                <div style="font-size: 2.5rem; font-weight: bold; color: #d4af37;">45+</div>
-                <div style="margin-top: 0.5rem;">Partner Organizations</div>
-            </div>
-            <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; text-align: center; backdrop-filter: blur(10px);">
-                <div style="font-size: 2.5rem; font-weight: bold; color: #d4af37;">2.5K+</div>
-                <div style="margin-top: 0.5rem;">Community Members</div>
-            </div>
-        </div>
-
-        <!-- Resource Categories -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
-            <!-- Category 1 -->
-            <div style="background: rgba(255,255,255,0.95); color: #1f2937; padding: 1.5rem; border-radius: 12px; border-top: 4px solid #d4af37; transition: transform 0.3s; cursor: pointer;" 
-                 onmouseover="this.style.transform='translateY(-5px)'" 
-                 onmouseout="this.style.transform='translateY(0)'">
-                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📚</div>
-                <h3 style="color: #1e3a8a; margin-bottom: 0.5rem;">Education & Training</h3>
-                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Scholarships, study materials, youth programs</p>
-                <span style="background: #3b82f6; color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: bold;">24 Resources</span>
-            </div>
-
-            <!-- Category 2 -->
-            <div style="background: rgba(255,255,255,0.95); color: #1f2937; padding: 1.5rem; border-radius: 12px; border-top: 4px solid #d4af37; transition: transform 0.3s; cursor: pointer;" 
-                 onmouseover="this.style.transform='translateY(-5px)'" 
-                 onmouseout="this.style.transform='translateY(0)'">
-                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🌾</div>
-                <h3 style="color: #1e3a8a; margin-bottom: 0.5rem;">Agriculture & Farming</h3>
-                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Best practices, market info, training</p>
-                <span style="background: #3b82f6; color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: bold;">18 Resources</span>
-            </div>
-
-            <!-- Category 3 -->
-            <div style="background: rgba(255,255,255,0.95); color: #1f2937; padding: 1.5rem; border-radius: 12px; border-top: 4px solid #d4af37; transition: transform 0.3s; cursor: pointer;" 
-                 onmouseover="this.style.transform='translateY(-5px)'" 
-                 onmouseout="this.style.transform='translateY(0)'">
-                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏥</div>
-                <h3 style="color: #1e3a8a; margin-bottom: 0.5rem;">Health & Welfare</h3>
-                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Healthcare facilities, social support</p>
-                <span style="background: #3b82f6; color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: bold;">15 Resources</span>
-            </div>
-
-            <!-- Category 4 -->
-            <div style="background: rgba(255,255,255,0.95); color: #1f2937; padding: 1.5rem; border-radius: 12px; border-top: 4px solid #d4af37; transition: transform 0.3s; cursor: pointer;" 
-                 onmouseover="this.style.transform='translateY(-5px)'" 
-                 onmouseout="this.style.transform='translateY(0)'">
-                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">💼</div>
-                <h3 style="color: #1e3a8a; margin-bottom: 0.5rem;">Employment & Skills</h3>
-                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Job postings, CV guides, entrepreneurship</p>
-                <span style="background: #3b82f6; color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: bold;">32 Resources</span>
-            </div>
-
-            <!-- Category 5 -->
-            <div style="background: rgba(255,255,255,0.95); color: #1f2937; padding: 1.5rem; border-radius: 12px; border-top: 4px solid #d4af37; transition: transform 0.3s; cursor: pointer;" 
-                 onmouseover="this.style.transform='translateY(-5px)'" 
-                 onmouseout="this.style.transform='translateY(0)'">
-                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏛️</div>
-                <h3 style="color: #1e3a8a; margin-bottom: 0.5rem;">Community Services</h3>
-                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">NGOs, government offices, emergency</p>
-                <span style="background: #3b82f6; color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: bold;">21 Resources</span>
-            </div>
-
-            <!-- Category 6 -->
-            <div style="background: rgba(255,255,255,0.95); color: #1f2937; padding: 1.5rem; border-radius: 12px; border-top: 4px solid #d4af37; transition: transform 0.3s; cursor: pointer;" 
-                 onmouseover="this.style.transform='translateY(-5px)'" 
-                 onmouseout="this.style.transform='translateY(0)'">
-                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎨</div>
-                <h3 style="color: #1e3a8a; margin-bottom: 0.5rem;">Recreation & Tourism</h3>
-                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Last of Falls, cultural events, activities</p>
-                <span style="background: #3b82f6; color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: bold;">12 Resources</span>
-            </div>
-        </div>
-
-        <!-- Featured Projects -->
-        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; backdrop-filter: blur(10px);">
-            <h3 style="color: #d4af37; text-align: center; margin-bottom: 1.5rem; font-size: 1.5rem;">🌟 Featured Initiatives</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                <div>
-                    <h4 style="color: #d4af37; margin-bottom: 0.5rem;">🌊 Last of Falls Project</h4>
-                    <p style="font-size: 0.9rem;">Eco-tourism development and conservation</p>
+        <div class="featured">
+            <h2>Active HAO Initiatives</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Real programs making measurable impact in Jasikan Municipality</p>
+            
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <h4>👥 Youth Employment Program</h4>
+                    <p><strong>Impact:</strong> 60 youth trained • 25 employed/engaged • 5 businesses supported</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Improved youth employability and community engagement.</p>
                 </div>
-                <div>
-                    <h4 style="color: #d4af37; margin-bottom: 0.5rem;">👥 Youth Employment</h4>
-                    <p style="font-size: 0.9rem;">Job opportunities and entrepreneurship support</p>
+                <div class="featured-item">
+                    <h4>👩 Girl-Child Empowerment</h4>
+                    <p><strong>Impact:</strong> 40 girls supported • 5 scholarships • 6 mentors</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Improved awareness and retention support for girls.</p>
                 </div>
-                <div>
-                    <h4 style="color: #d4af37; margin-bottom: 0.5rem;">👩 Girl-Child Empowerment</h4>
-                    <p style="font-size: 0.9rem;">Educational support and mentorship programs</p>
+                <div class="featured-item">
+                    <h4>🌱 Agricultural Development</h4>
+                    <p><strong>Impact:</strong> 30 farmers trained • Local market linkages</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Knowledge transfer on sustainable farming practices.</p>
                 </div>
-                <div>
-                    <h4 style="color: #d4af37; margin-bottom: 0.5rem;">🌱 Agricultural Development</h4>
-                    <p style="font-size: 0.9rem;">Modern farming techniques and markets</p>
+                <div class="featured-item">
+                    <h4>📢 Community Advocacy</h4>
+                    <p><strong>Impact:</strong> 100+ people reached</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Strengthened civic participation and awareness.</p>
                 </div>
             </div>
         </div>
 
-        <!-- CTA Button -->
-        <div style="text-align: center;">
-            <a href="resource-hub.html" style="display: inline-block; background: #d4af37; color: #1e3a8a; padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1rem; transition: all 0.3s; box-shadow: 0 4px 15px rgba(212,175,55,0.3);"
-               onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(212,175,55,0.5)'"
-               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(212,175,55,0.3)'">
-                Explore All Resources →
-            </a>
+        <div class="cta">
+            <a href="#" class="btn" onclick="showPage('projects'); return false;">Explore All Projects →</a>
         </div>
     </div>
-</section>
 
-<!-- Responsive Styles -->
-<style>
-    @media (max-width: 768px) {
-        #resource-hub h2 {
-            font-size: 1.8rem !important;
+    <div id="resources" class="page">
+        <div class="container">
+            <h2 class="section-title">Resource Directory</h2>
+            <p class="section-subtitle">Comprehensive resources organized by category</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">📚</div>
+                    <h3>Education & Training</h3>
+                    <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--gray);">
+                    <p><strong>Available Resources:</strong></p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Government Bursaries & Scholarships</li>
+                        <li>NGO/Community-Based Support Programs</li>
+                        <li>Youth Skills Training Sessions</li>
+                        <li>Community Sensitisation Workshops</li>
+                        <li>Informal Mentorship & Leadership Training</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🌾</div>
+                    <h3>Agriculture & Farming</h3>
+                    <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--gray);">
+                    <p><strong>Available Resources:</strong></p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Ministry of Food & Agriculture (MoFA) Extension Services</li>
+                        <li>Local Farmer Associations</li>
+                        <li>Agricultural Input Supply & Advisory Services</li>
+                        <li>Complete Farmer LTD Partnership</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🏥</div>
+                    <h3>Health & Social Welfare</h3>
+                    <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--gray);">
+                    <p><strong>Available Facilities:</strong></p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Jasikan Government Hospital</li>
+                        <li>CHPS Compounds (Community-based Health Planning and Services)</li>
+                        <li>Community Health Services</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">💼</div>
+                    <h3>Employment & Skills</h3>
+                    <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--gray);">
+                    <p><strong>Available Programs:</strong></p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Youth Employment Orientation</li>
+                        <li>Skills Referral & Mentorship</li>
+                        <li>Project-Based Engagement (Last of Falls & Others)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🏛️</div>
+                    <h3>Community Services</h3>
+                    <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--gray);">
+                    <p><strong>Key Organizations:</strong></p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Jasikan Municipal Assembly</li>
+                        <li>Community Leadership Structures</li>
+                        <li>Plan Ghana</li>
+                        <li>FILMA</li>
+                        <li>Faith-Based Organizations</li>
+                        <li>Youth & Community Groups</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🎨</div>
+                    <h3>Recreation & Tourism</h3>
+                    <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--gray);">
+                    <p><strong>Attractions & Sites:</strong></p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Last of Falls (Eco-Tourism Development)</li>
+                        <li>Natural & Community Recreational Sites</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cta">
+                <a href="#" class="btn" onclick="showPage('library'); return false;">Visit Digital Library →</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="projects" class="page">
+        <div class="container">
+            <h2 class="section-title">HAO Projects & Initiatives</h2>
+            <p class="section-subtitle">Community-driven programs creating measurable impact</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🌊</div>
+                    <h3>Last of Falls Project</h3>
+                    <p><strong>Status:</strong> <span style="color: orange; font-weight: bold;">● In Development</span></p>
+                    <p><strong>Objective:</strong> Develop eco-tourism potential while preserving natural beauty and supporting local economy.</p>
+                    <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray);">
+                    <p><strong>Current Progress:</strong></p>
+                    <ul style="margin-left: 1.5rem; font-size: 0.95rem;">
+                        <li>People employed: 10-15 (direct & indirect)</li>
+                        <li>Infrastructure: Concept development & groundwork</li>
+                        <li>Achievement: Established structured eco-tourism vision for Jasikan</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <h3>Youth Employment Initiative</h3>
+                    <p><strong>Status:</strong> <span style="color: green; font-weight: bold;">● Active</span></p>
+                    <p><strong>Objective:</strong> Connect young people with meaningful employment and entrepreneurship opportunities.</p>
+                    <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray);">
+                    <p><strong>Impact:</strong></p>
+                    <ul style="margin-left: 1.5rem; font-size: 0.95rem;">
+                        <li>60 youth trained</li>
+                        <li>25 youth employed/engaged</li>
+                        <li>5 businesses supported</li>
+                        <li>Achievement: Improved youth employability and engagement</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">👩</div>
+                    <h3>Girl-Child Empowerment</h3>
+                    <p><strong>Status:</strong> <span style="color: green; font-weight: bold;">● Active</span></p>
+                    <p><strong>Objective:</strong> Support young women through education, mentorship, and retention programs.</p>
+                    <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray);">
+                    <p><strong>Impact:</strong></p>
+                    <ul style="margin-left: 1.5rem; font-size: 0.95rem;">
+                        <li>40 girls supported</li>
+                        <li>5 scholarships awarded</li>
+                        <li>6 mentors involved</li>
+                        <li>Achievement: Improved awareness and retention support for girls</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🌱</div>
+                    <h3>Agricultural Development</h3>
+                    <p><strong>Status:</strong> <span style="color: green; font-weight: bold;">● Active</span></p>
+                    <p><strong>Objective:</strong> Train farmers in modern, sustainable techniques and connect them to markets.</p>
+                    <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray);">
+                    <p><strong>Impact:</strong></p>
+                    <ul style="margin-left: 1.5rem; font-size: 0.95rem;">
+                        <li>30 farmers trained</li>
+                        <li>Yield improvement: Early-stage/qualitative</li>
+                        <li>Local market linkages established</li>
+                        <li>Achievement: Knowledge transfer on sustainable practices</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📢</div>
+                    <h3>Community Awareness & Advocacy</h3>
+                    <p><strong>Status:</strong> <span style="color: green; font-weight: bold;">● Active</span></p>
+                    <p><strong>Objective:</strong> Strengthen civic participation and community awareness on key issues.</p>
+                    <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray);">
+                    <p><strong>Impact:</strong></p>
+                    <ul style="margin-left: 1.5rem; font-size: 0.95rem;">
+                        <li>100+ people reached</li>
+                        <li>Achievement: Strengthened civic participation and awareness</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">💻</div>
+                    <h3>Digital Skills Academy</h3>
+                    <p><strong>Status:</strong> <span style="color: blue; font-weight: bold;">● Planned</span></p>
+                    <p><strong>Objective:</strong> Equip youth with digital and tech skills for the modern economy.</p>
+                    <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray);">
+                    <p><strong>Status:</strong> In planning phase. Launch details coming soon.</p>
+                </div>
+            </div>
+
+            <div class="cta">
+                <a href="index.html#contact" class="btn">Get Involved →</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="library" class="page">
+        <div class="container">
+            <h2 class="section-title">Digital Library</h2>
+            <p class="section-subtitle">Downloadable resources and documentation</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">📄</div>
+                    <h3>Program Documents</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>HAO Strategic Plans & Reports</li>
+                        <li>Project Implementation Guides</li>
+                        <li>Volunteer Handbooks</li>
+                        <li>Partnership Information</li>
+                    </ul>
+                    <p style="font-size: 0.9rem; color: var(--light-blue); margin-top: 1rem;">📧 Contact us for document access</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📋</div>
+                    <h3>Government Forms & Info</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>NHIS Registration Information</li>
+                        <li>Business Registration Guidelines</li>
+                        <li>Municipal Assembly Resources</li>
+                        <li>Community Service Information</li>
+                    </ul>
+                    <p style="font-size: 0.9rem; color: var(--light-blue); margin-top: 1rem;">📧 Contact us for form access</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📚</div>
+                    <h3>Training Resources</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Youth Skills Development Materials</li>
+                        <li>Agricultural Best Practices Guides</li>
+                        <li>Community Leadership Resources</li>
+                        <li>Entrepreneurship Support Materials</li>
+                    </ul>
+                    <p style="font-size: 0.9rem; color: var(--light-blue); margin-top: 1rem;">📧 Contact us for training materials</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔬</div>
+                    <h3>Research & Reports</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Community Needs Assessments</li>
+                        <li>Project Impact Evaluations</li>
+                        <li>Agriculture Sector Analysis</li>
+                        <li>Youth Employment Studies</li>
+                    </ul>
+                    <p style="font-size: 0.9rem; color: var(--light-blue); margin-top: 1rem;">📧 Contact us for research access</p>
+                </div>
+            </div>
+
+            <div class="notice-board">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">📌 How to Access Resources</h3>
+                <div class="notice">
+                    <p><strong>Email:</strong> humbleafricanz2015@gmail.com</p>
+                    <p><strong>Phone:</strong> +233 54 126 8904</p>
+                    <p style="margin-top: 0.5rem;">Contact us to request specific documents, training materials, or information. We're here to support your needs!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">HAO Homepage</a>
+                <a href="#" onclick="showPage('home'); return false;">Hub Home</a>
+                <a href="#" onclick="showPage('resources'); return false;">Resources</a>
+                <a href="#" onclick="showPage('projects'); return false;">Projects</a>
+                <a href="#" onclick="showPage('library'); return false;">Library</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Our Projects</h4>
+                <a href="#" onclick="showPage('projects'); return false;">Youth Employment</a>
+                <a href="#" onclick="showPage('projects'); return false;">Girl-Child Empowerment</a>
+                <a href="#" onclick="showPage('projects'); return false;">Agricultural Development</a>
+                <a href="#" onclick="showPage('projects'); return false;">Community Advocacy</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Get Involved</h4>
+                <a href="index.html#contact">Volunteer With Us</a>
+                <a href="index.html#contact">Partner With HAO</a>
+                <a href="index.html#contact">Support Our Work</a>
+                <a href="index.html#contact">Community Events</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Jasikan Municipality<br>Oti Region, Ghana</p>
+                <p><strong>Email:</strong><br>humbleafricanz2015@gmail.com</p>
+                <p><strong>Phone:</strong><br>+233 54 126 8904</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Humble Africanz Organization. All rights reserved.</p>
+            <p>Empowering Communities • Transforming Lives • Building Futures</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            window.scrollTo(0, 0);
+            
+            const nav = document.getElementById('nav');
+            if (nav) {
+                nav.classList.remove('active');
+            }
         }
-        #resource-hub p {
-            font-size: 1rem !important;
+
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            if (nav) {
+                nav.classList.toggle('active');
+            }
         }
-    }
-</style>
+
+        const searchBox = document.querySelector('.search-box');
+        if (searchBox) {
+            searchBox.addEventListener('input', function(e) {
+                const query = e.target.value.toLowerCase();
+                if (query.length > 2) {
+                    console.log('Searching for:', query);
+                    // Future: Add real search functionality here
+                }
+            });
+        }
+    </script>
+</body>
+                                                                                                      </html>
