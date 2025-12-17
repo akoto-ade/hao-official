@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Volta Cascade - Interactive Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+        }
+
+        .content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .view {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mountain Visualization */
+        .mountain-container {
+            position: relative;
+            height: 600px;
+            margin: 2rem auto;
+            perspective: 1000px;
+        }
+
+        .mountain {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 300px solid transparent;
+            border-right: 300px solid transparent;
+            border-bottom: 500px solid #34495e;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+            animation: mountainRise 2s ease-out;
+        }
+
+        @keyframes mountainRise {
+            from { transform: translateX(-50%) translateY(100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        .mountain::before {
+            content: '';
+            position: absolute;
+            bottom: -500px;
+            left: -300px;
+            width: 0;
+            height: 0;
+            border-left: 300px solid transparent;
+            border-right: 300px solid transparent;
+            border-bottom: 500px solid #2c3e50;
+            opacity: 0.6;
+        }
+
+        .elephant {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(26, 188, 156, 0.5));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-20px); }
+        }
+
+        .waterfall {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            width: 4px;
+            height: 300px;
+            background: linear-gradient(to bottom, transparent, rgba(26, 188, 156, 0.8), rgba(52, 152, 219, 0.9));
+            animation: flow 2s ease-in-out infinite;
+            filter: blur(2px);
+        }
+
+        @keyframes flow {
+            0% { opacity: 0.5; transform: translateX(-50%) scaleY(0.9); }
+            50% { opacity: 1; transform: translateX(-50%) scaleY(1); }
+            100% { opacity: 0.5; transform: translateX(-50%) scaleY(0.9); }
+        }
+
+        .info-tag {
+            position: absolute;
+            background: rgba(26, 188, 156, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .info-tag:hover {
+            transform: scale(1.1) !important;
+            box-shadow: 0 5px 20px rgba(26, 188, 156, 0.5);
+        }
+
+        /* Pool System */
+        .pool-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .pool-chamber {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(41, 128, 185, 0.3));
+            border: 2px solid #3498db;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pool-chamber::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            background: rgba(52, 152, 219, 0.3);
+            transition: height 0.5s;
+        }
+
+        .pool-chamber:hover::before {
+            height: 100%;
+        }
+
+        .pool-chamber:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.4);
+        }
+
+        .pool-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pool-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pool-depth {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hotel & Zipline */
+        .hotel-container {
+            position: relative;
+            height: 500px;
+            margin: 2rem 0;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .hotel {
+            position: absolute;
+            right: 10%;
+            bottom: 10%;
+            width: 80px;
+            height: 300px;
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            animation: buildHotel 2s ease-out;
+        }
+
+        @keyframes buildHotel {
+            from { height: 0; }
+            to { height: 300px; }
+        }
+
+        .hotel::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 30px,
+                rgba(255,255,255,0.1) 30px,
+                rgba(255,255,255,0.1) 35px
+            );
+        }
+
+        .zipline {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(to left, #f39c12, #e67e22);
+            transform: rotate(-15deg);
+            animation: ziplineAppear 1.5s ease-out 0.5s both;
+        }
+
+        @keyframes ziplineAppear {
+            from { width: 0; }
+            to { width: 60%; }
+        }
+
+        .zipline-rider {
+            position: absolute;
+            left: 0;
+            top: -15px;
+            font-size: 2rem;
+            animation: ride 4s ease-in-out infinite;
+        }
+
+        @keyframes ride {
+            0% { left: 0%; }
+            50% { left: 95%; }
+            51% { left: 95%; transform: scaleX(-1); }
+            100% { left: 0%; transform: scaleX(-1); }
+        }
+
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(26, 188, 156, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1abc9c;
+        }
+
+        /* Irrigation System */
+        .irrigation-flow {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(to bottom, rgba(26, 188, 156, 0.1), rgba(22, 160, 133, 0.2));
+            border-radius: 15px;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .water-drop {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #3498db;
+            border-radius: 50%;
+            animation: drop 3s linear infinite;
+        }
+
+        @keyframes drop {
+            0% { top: 0; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .water-drop:nth-child(1) { left: 20%; animation-delay: 0s; }
+        .water-drop:nth-child(2) { left: 40%; animation-delay: 0.5s; }
+        .water-drop:nth-child(3) { left: 60%; animation-delay: 1s; }
+        .water-drop:nth-child(4) { left: 80%; animation-delay: 1.5s; }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 2rem 0;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .mountain { border-left: 150px solid transparent; border-right: 150px solid transparent; border-bottom: 300px solid #34495e; }
+            .elephant { font-size: 2rem; }
+            .hotel { width: 50px; height: 200px; }
+            .feature-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌊 THE VOLTA CASCADE 🌊</h1>
+        <p>Revolutionary Tourism & Agricultural Development Project | Ghana</p>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="tab active" onclick="showView('overview')">Overview</button>
+        <button class="tab" onclick="showView('mountain')">Mountain</button>
+        <button class="tab" onclick="showView('pool')">7-Chamber Pool</button>
+        <button class="tab" onclick="showView('hotel')">Hotel & Zipline</button>
+        <button class="tab" onclick="showView('irrigation')">Irrigation</button>
+        <button class="tab" onclick="showView('economics')">Economics</button>
+    </div>
+
+    <div class="content">
+        <!-- Overview -->
+        <div id="overview" class="view active">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #1abc9c;">Project Overview</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏔️</div>
+                    <div class="feature-title">Concrete Mountain</div>
+                    <p>100-170ft tall structure featuring a majestic elephant statue at the peak with water flowing from its trunk creating a spectacular waterfall.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏊</div>
+                    <div class="feature-title">Olympic Pool System</div>
+                    <p>7 interconnected chambers designed for training, recreation, and competitive swimming events.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏨</div>
+                    <div class="feature-title">Luxury Hotel</div>
+                    <p>190ft tower offering premium accommodation with breathtaking views and direct zipline access.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌾</div>
+                    <div class="feature-title">Smart Irrigation</div>
+                    <p>Sustainable water management system supporting local agricultural development.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Adventure Sports</div>
+                    <p>Zipline, rock climbing, fitness staircase, and mechanical lift system for ultimate adventure.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <div class="feature-title">Economic Impact</div>
+                    <p>Job creation, tourism revenue, and community development opportunities.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mountain View -->
+        <div id="mountain" class="view">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #1abc9c;">Concrete Mountain with Elephant Statue</h2>
+            <div class="mountain-container">
+                <div class="mountain"></div>
+                <div class="elephant">🐘</div>
+                <div class="waterfall"></div>
+                <div class="info-tag" style="top: 15%; left: 50%; transform: translateX(-50%);">
+                    170ft Peak
+                </div>
+                <div class="info-tag" style="top: 30%; left: 50%; transform: translateX(-50%);">
+                    Elephant Statue
+                </div>
+                <div class="info-tag" style="bottom: 20%; left: 50%; transform: translateX(-50%);">
+                    Waterfall Feature
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem; background: rgba(26, 188, 156, 0.1); padding: 2rem; border-radius: 15px;">
+                <h3 style="color: #1abc9c; margin-bottom: 1rem;">Features:</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li>✓ 100-170ft tall concrete structure</li>
+                    <li>✓ Majestic elephant statue at peak</li>
+                    <li>✓ Water flows from elephant's trunk</li>
+                    <li>✓ Spectacular waterfall effect</li>
+                    <li>✓ Mechanical lift system</li>
+                    <li>✓ Fitness staircase (500+ steps)</li>
+                    <li>✓ Rock climbing walls</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Pool System -->
+        <div id="pool" class="view">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #1abc9c;">7-Chamber Olympic Pool System</h2>
+            <div class="pool-system">
+                <div class="pool-chamber">
+                    <div class="pool-number">1</div>
+                    <div class="pool-name">Warm-Up Pool</div>
+                    <div class="pool-depth">Depth: 4-5 feet</div>
+                </div>
+                <div class="pool-chamber">
+                    <div class="pool-number">2</div>
+                    <div class="pool-name">Training Pool</div>
+                    <div class="pool-depth">Depth: 6-8 feet</div>
+                </div>
+                <div class="pool-chamber">
+                    <div class="pool-number">3</div>
+                    <div class="pool-name">Competition Pool</div>
+                    <div class="pool-depth">Olympic Standard</div>
+                </div>
+                <div class="pool-chamber">
+                    <div class="pool-number">4</div>
+                    <div class="pool-name">Diving Pool</div>
+                    <div class="pool-depth">Depth: 12-15 feet</div>
+                </div>
+                <div class="pool-chamber">
+                    <div class="pool-number">5</div>
+                    <div class="pool-name">Recreation Pool</div>
+                    <div class="pool-depth">Family Friendly</div>
+                </div>
+                <div class="pool-chamber">
+                    <div class="pool-number">6</div>
+                    <div class="pool-name">Kids Pool</div>
+                    <div class="pool-depth">Shallow: 2-3 feet</div>
+                </div>
+                <div class="pool-chamber">
+                    <div class="pool-number">7</div>
+                    <div class="pool-name">Therapy Pool</div>
+                    <div class="pool-depth">Heated & Accessible</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem; background: rgba(52, 152, 219, 0.1); padding: 2rem; border-radius: 15px;">
+                <h3 style="color: #3498db; margin-bottom: 1rem;">Pool System Benefits:</h3>
+                <p>✓ Olympic-standard training facility</p>
+                <p>✓ Multi-purpose recreational areas</p>
+                <p>✓ Competitive swimming events</p>
+                <p>✓ Family-friendly environments</p>
+                <p>✓ Professional coaching opportunities</p>
+            </div>
+        </div>
+
+        <!-- Hotel & Zipline -->
+        <div id="hotel" class="view">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #1abc9c;">190ft Hotel Tower & Zipline Adventure</h2>
+            <div class="hotel-container">
+                <div class="hotel"></div>
+                <div class="zipline">
+                    <div class="zipline-rider">🚡</div>
+                </div>
+                <div class="info-tag" style="bottom: 15%; right: 8%;">
+                    190ft Hotel
+                </div>
+                <div class="info-tag" style="top: 18%; right: 40%;">
+                    Zipline Adventure
+                </div>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏨</div>
+                    <div class="feature-title">Luxury Accommodations</div>
+                    <p>Premium rooms with stunning views of the mountain, pools, and surrounding landscape.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎢</div>
+                    <div class="feature-title">Zipline Experience</div>
+                    <p>Thrilling zipline from hotel to mountain offering breathtaking aerial views.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🍽️</div>
+                    <div class="feature-title">Dining & Amenities</div>
+                    <p>Restaurants, spa, conference facilities, and entertainment venues.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Irrigation -->
+        <div id="irrigation" class="view">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #1abc9c;">Sustainable Irrigation System</h2>
+            <div class="irrigation-flow">
+                <div class="water-drop"></div>
+                <div class="water-drop"></div>
+                <div class="water-drop"></div>
+                <div class="water-drop"></div>
+                <div style="text-align: center; padding: 3rem;">
+                    <h3 style="color: #1abc9c; margin-bottom: 2rem;">Water Management System</h3>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">Utilizing waterfall and pool overflow for agricultural development</p>
+                    <div class="feature-grid" style="margin-top: 3rem;">
+                        <div class="feature-card">
+                            <div class="feature-icon">💧</div>
+                            <div class="feature-title">Water Collection</div>
+                            <p>Capturing natural flow and pool overflow</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🌱</div>
+                            <div class="feature-title">Crop Irrigation</div>
+                            <p>Supporting local farming communities</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">♻️</div>
+                            <div class="feature-title">Sustainability</div>
+                            <p>Eco-friendly water recycling system</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Economics -->
+        <div id="economics" class="view">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #1abc9c;">Economic Impact & Benefits</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <div class="feature-title">Job Creation</div>
+                    <p><strong>500+ Direct Jobs</strong></p>
+                    <p>Hotel staff, lifeguards, tour guides, maintenance, security, instructors</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-title">Tourism Revenue</div>
+                    <p><strong>Year-Round Income</strong></p>
+                    <p>Hotel bookings, pool access, zipline tickets, events hosting</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏪</div>
+                    <div class="feature-title">Local Business</div>
+                    <p><strong>Community Growth</strong></p>
+                    <p>Restaurants, shops, transportation, tour services</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌾</div>
+                    <div class="feature-title">Agriculture</div>
+                    <p><strong>Farming Support</strong></p>
+                    <p>Irrigation system, market access, food supply chain</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <div class="feature-title">Training Hub</div>
+                    <p><strong>Skills Development</strong></p>
+                    <p>Swimming training, hospitality, adventure sports coaching</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <div class="feature-title">Events & Competitions</div>
+                    <p><strong>National & International</strong></p>
+                    <p>Swimming championships, adventure races, tourism expos</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="index.html" class="back-btn">← Back to HAO Homepage</a>
+        </div>
+    </div>
+
+    <script>
+        function showView(viewId) {
+            // Hide all views
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            
+            // Remove active from all tabs
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            
+            // Show selected view
+            document.getElementById(viewId).classList.add('active');
+            
+            // Activate corresponding tab
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Add floating animation to mountain on load
+        window.addEventListener('load', () => {
+            const mountain = document.querySelector('.mountain');
+            if (mountain) {
+                mountain.style.animation = 'mountainRise 2s ease-out';
+            }
+        });
+    </script>
+</body>
+</html>
