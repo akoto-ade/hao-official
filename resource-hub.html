@@ -4,7 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community Resource Hub - Humble Africanz</title>
-    <style>
+   /* SCHOLARSHIP STYLES - Add these before the closing </style> tag */
+
+.scholarship-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    border-left: 5px solid var(--primary);
+}
+
+.scholarship-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.scholarship-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.scholarship-title {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.scholarship-badge {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+}
+
+.badge-local { background: #1abc9c; }
+.badge-foreign { background: #e74c3c; }
+
+.scholarship-info {
+    display: grid;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.info-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.info-label {
+    font-weight: bold;
+    color: #555;
+    min-width: 120px;
+}
+
+.info-value {
+    color: #333;
+}
+
+.scholarship-description {
+    color: #666;
+    line-height: 1.6;
+    margin: 1rem 0;
+}
+
+.highlight-box {
+    background: #fff3cd;
+    border-left: 4px solid var(--gold);
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+}
+
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    background: var(--white);
+    border-radius: 15px;
+    color: #666;
+} <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --primary: #1e3a8a; --gold: #d4af37; --light-blue: #3b82f6;
@@ -477,7 +562,460 @@
                 <a href="#" onclick="showPage('home'); return false;">Hub Home</a>
                 <a href="#" onclick="showPage('resources'); return false;">Resources</a>
                 <a href="#" onclick="showPage('projects'); return false;">Projects</a>
+                <li><a href="#" onclick="showPage('library')">Library</a></li>
+                <li><a href="#" onclick="showPage('scholarships')">🎓 Scholarships</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="badge">📍 Jasikan Municipality</div>
+            <h1>Community <span class="hero-accent">Resource Hub</span></h1>
+            <p>Empowering our community by connecting people to opportunities, services, and information.</p>
+            <input type="text" class="search-box" placeholder="Search for opportunities, services, information...">
+        </section>
+
+        <div class="container">
+            <h2 class="section-title">Resource Categories</h2>
+            <p class="section-subtitle">Explore resources designed to support our community</p>
+
+            <div class="grid">
+                <div class="card" onclick="showPage('resources')">
+                    <div class="card-icon">📚</div>
+                    <h3>Education & Training</h3>
+                    <p>Scholarships, skills training, mentorship programs, and youth development.</p>
+                    <span class="badge-count">5 Programs</span>
+                </div>
+
+                <div class="card" onclick="showPage('resources')">
+                    <div class="card-icon">🌾</div>
+                    <h3>Agriculture & Farming</h3>
+                    <p>Extension services, farmer groups, input suppliers, and training.</p>
+                    <span class="badge-count">4 Services</span>
+                </div>
+
+                <div class="card" onclick="showPage('resources')">
+                    <div class="card-icon">🏥</div>
+                    <h3>Health & Social Welfare</h3>
+                    <p>Hospital, CHPS compounds, and community health services.</p>
+                    <span class="badge-count">3 Facilities</span>
+                </div>
+
+                <div class="card" onclick="showPage('resources')">
+                    <div class="card-icon">💼</div>
+                    <h3>Employment & Skills</h3>
+                    <p>Youth employment orientation, skills referral, and mentorship.</p>
+                    <span class="badge-count">3 Programs</span>
+                </div>
+
+                <div class="card" onclick="showPage('resources')">
+                    <div class="card-icon">🏛️</div>
+                    <h3>Community Services</h3>
+                    <p>Municipal Assembly, NGOs, faith-based organizations, and groups.</p>
+                    <span class="badge-count">6 Organizations</span>
+                </div>
+
+                <div class="card" onclick="showPage('resources')">
+                    <div class="card-icon">🎨</div>
+                    <h3>Recreation & Tourism</h3>
+                    <p>Last of Falls, natural sites, and community recreational areas.</p>
+                    <span class="badge-count">2 Sites</span>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-num">20+</div>
+                    <div>Available Resources</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">4</div>
+                    <div>Active Projects</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">13+</div>
+                    <div>Partner Organizations</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">550+</div>
+                    <div>Community Members Reached</div>
+                </div>
+            </div>
+
+            <div class="notice-board">
+                <h2 style="color: var(--primary); margin-bottom: 1.5rem;">📢 Community Notice Board</h2>
+                
+                <div class="notice">
+                    <div class="notice-date">📅 Upcoming - Next 30 Days</div>
+                    <div class="notice-title">Community Environmental Awareness Session</div>
+                    <p>Community engagement on environmental responsibility and sustainable practices. Open to youth, volunteers, and all community members.</p>
+                </div>
+
+                <div class="notice">
+                    <div class="notice-date">📅 Upcoming Quarter</div>
+                    <div class="notice-title">Youth Skills Orientation Program</div>
+                    <p>Introduction to skills development and employment pathways for youth aged 18-35 years. Registration details coming soon.</p>
+                </div>
+
+                <div class="notice">
+                    <div class="notice-date">📅 Seasonal - Planting Period</div>
+                    <div class="notice-title">Agricultural Sensitisation Workshop</div>
+                    <p>Basic training on sustainable farming practices for local farmers and farmer groups. Hands-on sessions with MoFA extension officers.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="featured">
+            <h2>Active HAO Initiatives</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Real programs making measurable impact in Jasikan Municipality</p>
+            
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <h4>👥 Youth Employment Program</h4>
+                    <p><strong>Impact:</strong> 60 youth trained • 25 employed/engaged • 5 businesses supported</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Improved youth employability and community engagement.</p>
+                </div>
+                <div class="featured-item">
+                    <h4>👩 Girl-Child Empowerment</h4>
+                    <p><strong>Impact:</strong> 40 girls supported • 5 scholarships • 6 mentors</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Improved awareness and retention support for girls.</p>
+                </div>
+                <div class="featured-item">
+                    <h4>🌱 Agricultural Development</h4>
+                    <p><strong>Impact:</strong> 30 farmers trained • Local market linkages</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Knowledge transfer on sustainable farming practices.</p>
+                </div>
+                <div class="featured-item">
+                    <h4>📢 Community Advocacy</h4>
+                    <p><strong>Impact:</strong> 100+ people reached</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Strengthened civic participation and awareness.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta">
+            <a href="#" class="btn" onclick="showPage('projects'); return false;">Explore All Projects →</a>
+        </div>
+    </div>
+
+    <div id="resources" class="page">
+        <div class="container">
+            <h2 class="section-title">Resource Directory</h2>
+            <p class="section-subtitle">Comprehensive resources organized by category</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">📚</div>
+                    <h3>Education & Training</h3>
+                    <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--gray);">
+                    <p><strong>Available Resources:</strong></p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Government Bursaries & Scholarships</li>
+                        <li>NGO/Community-Based Support Programs</li>
+                        <li>Youth Skills Training Sessions</li>
+                        <li>Community Sensitisation Workshops</li>
+                        <li>Informal Mentorship & Leadership Training</li>
+                    </ul>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" onclick="showPage('scholarships'); return false;" style="color: var(--light-blue); font-weight: bold;">View Scholarships →</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🌾</div>
+                    <h3>Agriculture & Farming</h3>
+                    <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--gray);">
+                    <p><strong>Available Resources:</strong></p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Ministry of Food & Agriculture (MoFA) Extension Services</li>
+                        <li>Local Farmer Associations</li>
+                        <li>Agricultural Input Supply & Advisory Services</li>
+                        <li>Complete Farmer LTD Partnership</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🏥</div>
+                    <h3>Health & Social Welfare</h3>
+                    <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--gray);">
+                    <p><strong>Available Facilities:</strong></p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Jasikan Government Hospital</li>
+                        <li>CHPS Compounds (Community-based Health Planning and Services)</li>
+                        <li>Community Health Services</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">💼</div>
+                    <h3>Employment & Skills</h3>
+                    <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--gray);">
+                    <p><strong>Available Programs:</strong></p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Youth Employment Orientation</li>
+                        <li>Skills Referral & Mentorship</li>
+                        <li>Project-Based Engagement (Last of Falls & Others)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🏛️</div>
+                    <h3>Community Services</h3>
+                    <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--gray);">
+                    <p><strong>Key Organizations:</strong></p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Jasikan Municipal Assembly</li>
+                        <li>Community Leadership Structures</li>
+                        <li>Plan Ghana</li>
+                        <li>FILMA</li>
+                        <li>Faith-Based Organizations</li>
+                        <li>Youth & Community Groups</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🎨</div>
+                    <h3>Recreation & Tourism</h3>
+                    <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--gray);">
+                    <p><strong>Attractions & Sites:</strong></p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Last of Falls (Eco-Tourism Development)</li>
+                        <li>Natural & Community Recreational Sites</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cta">
+                <a href="#" class="btn" onclick="showPage('scholarships'); return false;">Find Scholarships →</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="projects" class="page">
+        <div class="container">
+            <h2 class="section-title">HAO Projects & Initiatives</h2>
+            <p class="section-subtitle">Community-driven programs creating measurable impact</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🌊</div>
+                    <h3>Last of Falls Project</h3>
+                    <p><strong>Status:</strong> <span style="color: orange; font-weight: bold;">● In Development</span></p>
+                    <p><strong>Objective:</strong> Develop eco-tourism potential while preserving natural beauty and supporting local economy.</p>
+                    <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray);">
+                    <p><strong>Current Progress:</strong></p>
+                    <ul style="margin-left: 1.5rem; font-size: 0.95rem;">
+                        <li>People employed: 10-15 (direct & indirect)</li>
+                        <li>Infrastructure: Concept development & groundwork</li>
+                        <li>Achievement: Established structured eco-tourism vision for Jasikan</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <h3>Youth Employment Initiative</h3>
+                    <p><strong>Status:</strong> <span style="color: green; font-weight: bold;">● Active</span></p>
+                    <p><strong>Objective:</strong> Connect young people with meaningful employment and entrepreneurship opportunities.</p>
+                    <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray);">
+                    <p><strong>Impact:</strong></p>
+                    <ul style="margin-left: 1.5rem; font-size: 0.95rem;">
+                        <li>60 youth trained</li>
+                        <li>25 youth employed/engaged</li>
+                        <li>5 businesses supported</li>
+                        <li>Achievement: Improved youth employability and engagement</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">👩</div>
+                    <h3>Girl-Child Empowerment</h3>
+                    <p><strong>Status:</strong> <span style="color: green; font-weight: bold;">● Active</span></p>
+                    <p><strong>Objective:</strong> Support young women through education, mentorship, and retention programs.</p>
+                    <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray);">
+                    <p><strong>Impact:</strong></p>
+                    <ul style="margin-left: 1.5rem; font-size: 0.95rem;">
+                        <li>40 girls supported</li>
+                        <li>5 scholarships awarded</li>
+                        <li>6 mentors involved</li>
+                        <li>Achievement: Improved awareness and retention support for girls</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🌱</div>
+                    <h3>Agricultural Development</h3>
+                    <p><strong>Status:</strong> <span style="color: green; font-weight: bold;">● Active</span></p>
+                    <p><strong>Objective:</strong> Train farmers in modern, sustainable techniques and connect them to markets.</p>
+                    <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray);">
+                    <p><strong>Impact:</strong></p>
+                    <ul style="margin-left: 1.5rem; font-size: 0.95rem;">
+                        <li>30 farmers trained</li>
+                        <li>Yield improvement: Early-stage/qualitative</li>
+                        <li>Local market linkages established</li>
+                        <li>Achievement: Knowledge transfer on sustainable practices</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📢</div>
+                    <h3>Community Awareness & Advocacy</h3>
+                    <p><strong>Status:</strong> <span style="color: green; font-weight: bold;">● Active</span></p>
+                    <p><strong>Objective:</strong> Strengthen civic participation and community awareness on key issues.</p>
+                    <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray);">
+                    <p><strong>Impact:</strong></p>
+                    <ul style="margin-left: 1.5rem; font-size: 0.95rem;">
+                        <li>100+ people reached</li>
+                        <li>Achievement: Strengthened civic participation and awareness</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">💻</div>
+                    <h3>Digital Skills Academy</h3>
+                    <p><strong>Status:</strong> <span style="color: blue; font-weight: bold;">● Planned</span></p>
+                    <p><strong>Objective:</strong> Equip youth with digital and tech skills for the modern economy.</p>
+                    <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray);">
+                    <p><strong>Status:</strong> In planning phase. Launch details coming soon.</p>
+                </div>
+            </div>
+
+            <div class="cta">
+                <a href="index.html#contact" class="btn">Get Involved →</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="library" class="page">
+        <div class="container">
+            <h2 class="section-title">Digital Library</h2>
+            <p class="section-subtitle">Downloadable resources and documentation</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">📄</div>
+                    <h3>Program Documents</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>HAO Strategic Plans & Reports</li>
+                        <li>Project Implementation Guides</li>
+                        <li>Volunteer Handbooks</li>
+                        <li>Partnership Information</li>
+                    </ul>
+                    <p style="font-size: 0.9rem; color: var(--light-blue); margin-top: 1rem;">📧 Contact us for document access</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📋</div>
+                    <h3>Government Forms & Info</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>NHIS Registration Information</li>
+                        <li>Business Registration Guidelines</li>
+                        <li>Municipal Assembly Resources</li>
+                        <li>Community Service Information</li>
+                    </ul>
+                    <p style="font-size: 0.9rem; color: var(--light-blue); margin-top: 1rem;">📧 Contact us for form access</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📚</div>
+                    <h3>Training Resources</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Youth Skills Development Materials</li>
+                        <li>Agricultural Best Practices Guides</li>
+                        <li>Community Leadership Resources</li>
+                        <li>Entrepreneurship Support Materials</li>
+                    </ul>
+                    <p style="font-size: 0.9rem; color: var(--light-blue); margin-top: 1rem;">📧 Contact us for training materials</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔬</div>
+                    <h3>Research & Reports</h3>
+                    <ul style="margin: 1rem 0 1rem 1.5rem;">
+                        <li>Community Needs Assessments</li>
+                        <li>Project Impact Evaluations</li>
+                        <li>Agriculture Sector Analysis</li>
+                        <li>Youth Employment Studies</li>
+                    </ul>
+                    <p style="font-size: 0.9rem; color: var(--light-blue); margin-top: 1rem;">📧 Contact us for research access</p>
+                </div>
+            </div>
+
+            <div class="notice-board">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">📌 How to Access Resources</h3>
+                <div class="notice">
+                    <p><strong>Email:</strong> humbleafricanz2015@gmail.com</p>
+                    <p><strong>Phone:</strong> +233 54 126 8904</p>
+                    <p style="margin-top: 0.5rem;">Contact us to request specific documents, training materials, or information. We're here to support your needs!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCHOLARSHIPS PAGE -->
+    <div id="scholarships" class="page">
+        <div class="container">
+            <h2 class="section-title">🎓 Scholarship Finder</h2>
+            <p class="section-subtitle">Find the perfect scholarship opportunity for your education</p>
+
+            <!-- Filter Section -->
+            <div style="background: var(--white); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary);">Filter Scholarships</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: bold; margin-bottom: 0.5rem; color: var(--primary);">Level</label>
+                        <select id="levelFilter" onchange="filterScholarships()" style="padding: 0.7rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;">
+                            <option value="">All Levels</option>
+                            <option value="secondary">Secondary School</option>
+                            <option value="undergraduate">Undergraduate</option>
+                            <option value="masters">Master's</option>
+                            <option value="phd">PhD</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: bold; margin-bottom: 0.5rem; color: var(--primary);">Location</label>
+                        <select id="locationFilter" onchange="filterScholarships()" style="padding: 0.7rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;">
+                            <option value="">All Locations</option>
+                            <option value="local">Local (Ghana)</option>
+                            <option value="foreign">Study Abroad</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: bold; margin-bottom: 0.5rem; color: var(--primary);">Region Priority</label>
+                        <select id="regionFilter" onchange="filterScholarships()" style="padding: 0.7rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;">
+                            <option value="">All Regions</option>
+                            <option value="oti">Oti Region</option>
+                            <option value="volta">Volta Region</option>
+                            <option value="nationwide">Nationwide</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: bold; margin-bottom: 0.5rem; color: var(--primary);">Search</label>
+                        <input type="text" id="searchInput" placeholder="Search by name..." oninput="filterScholarships()" style="padding: 0.7rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scholarship Results -->
+            <div id="scholarshipResults" style="display: grid; gap: 1.5rem;"></div>
+
+            <!-- Back Button -->
+            <div class="cta">
+                <a href="#" class="btn" onclick="showPage('home'); return false;">← Back to Hub Home</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">HAO Homepage</a>
+                <a href="#" onclick="showPage('home'); return false;">Hub Home</a>
+                <a href="#" onclick="showPage('resources'); return false;">Resources</a>
+                <a href="#" onclick="showPage('projects'); return false;">Projects</a>
                 <a href="#" onclick="showPage('library'); return false;">Library</a>
+                <a href="#" onclick="showPage('scholarships'); return false;">Scholarships</a>
             </div>
 
             <div class="footer-section">
@@ -541,243 +1079,11 @@
                 const query = e.target.value.toLowerCase();
                 if (query.length > 2) {
                     console.log('Searching for:', query);
-                    // Future: Add real search functionality here
                 }
             });
         }
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scholarship Finder - Humble Africanz</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 2rem;
-        }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 3rem;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .filter-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .filter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .filter-group label {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #667eea;
-        }
-
-        .filter-group select, .filter-group input {
-            padding: 0.7rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .filter-group select:focus, .filter-group input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .scholarship-grid {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .scholarship-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            border-left: 5px solid #667eea;
-        }
-
-        .scholarship-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .scholarship-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1rem;
-        }
-
-        .scholarship-title {
-            font-size: 1.5rem;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .scholarship-badge {
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: white;
-        }
-
-        .badge-local { background: #1abc9c; }
-        .badge-foreign { background: #e74c3c; }
-        .badge-tertiary { background: #3498db; }
-        .badge-secondary { background: #f39c12; }
-
-        .scholarship-info {
-            display: grid;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .info-row {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .info-label {
-            font-weight: bold;
-            color: #555;
-            min-width: 120px;
-        }
-
-        .info-value {
-            color: #333;
-        }
-
-        .scholarship-description {
-            color: #666;
-            line-height: 1.6;
-            margin: 1rem 0;
-        }
-
-        .btn-apply {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-
-        .btn-apply:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 3rem;
-            background: white;
-            border-radius: 15px;
-            color: #666;
-        }
-
-        .highlight-box {
-            background: #f0f4ff;
-            border-left: 4px solid #667eea;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 8px;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 { font-size: 1.8rem; }
-            .filter-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>🎓 Scholarship Finder</h1>
-            <p>Find the perfect scholarship opportunity for your education</p>
-        </div>
-
-        <div class="filter-section">
-            <h3 style="margin-bottom: 1.5rem; color: #667eea;">Filter Scholarships</h3>
-            <div class="filter-grid">
-                <div class="filter-group">
-                    <label>Level</label>
-                    <select id="levelFilter" onchange="filterScholarships()">
-                        <option value="">All Levels</option>
-                        <option value="secondary">Secondary School</option>
-                        <option value="undergraduate">Undergraduate</option>
-                        <option value="masters">Master's</option>
-                        <option value="phd">PhD</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>Location</label>
-                    <select id="locationFilter" onchange="filterScholarships()">
-                        <option value="">All Locations</option>
-                        <option value="local">Local (Ghana)</option>
-                        <option value="foreign">Study Abroad</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>Region Priority</label>
-                    <select id="regionFilter" onchange="filterScholarships()">
-                        <option value="">All Regions</option>
-                        <option value="oti">Oti Region</option>
-                        <option value="volta">Volta Region</option>
-                        <option value="nationwide">Nationwide</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>Search</label>
-                    <input type="text" id="searchInput" placeholder="Search by name..." oninput="filterScholarships()">
-                </div>
-            </div>
-        </div>
-
-        <div id="scholarshipResults" class="scholarship-grid"></div>
-    </div>
-
-    <script>
+        // SCHOLARSHIP DATA AND FUNCTIONS
         const scholarships = [
             {
                 name: "Ghana Scholarships Secretariat",
@@ -956,7 +1262,7 @@
                                 </div>
                             ` : ''}
                         </div>
-                        <div style="text-align: right;">
+                        <div>
                             <span class="scholarship-badge badge-${s.location}">
                                 ${s.location === 'local' ? '🇬🇭 Local' : '🌍 Study Abroad'}
                             </span>
@@ -986,15 +1292,17 @@
                     
                     <p class="scholarship-description">${s.description}</p>
                     
-                    <a href="${s.link}" target="_blank" class="btn-apply">
+                    <a href="${s.link}" target="_blank" class="btn" style="display: inline-block;">
                         Learn More & Apply →
                     </a>
                 </div>
             `).join('');
         }
 
-        // Initial display
-        displayScholarships(scholarships);
+        // Initialize scholarship display when page loads
+        if (document.getElementById('scholarshipResults')) {
+            displayScholarships(scholarships);
+        }
     </script>
 </body>
-</html>
+ </html>
