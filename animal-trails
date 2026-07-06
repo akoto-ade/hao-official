@@ -1,1 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Trails</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
+        @keyframes starPop { 0% { transform: scale(0) rotate(0deg); } 50% { transform: scale(1.2) rotate(180deg); } 100% { transform: scale(1) rotate(360deg); } }
+        @keyframes confetti { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        .slide-in { animation: slideIn 0.5s ease-out; }
+        .bounce { animation: bounce 0.6s ease-in-out; }
+        .pulse { animation: pulse 1s ease-in-out infinite; }
+        .shake { animation: shake 0.5s ease-in-out; }
+        .star-pop { animation: starPop 0.6s ease-out; }
+        .confetti { animation: confetti 2s ease-out forwards; }
+        .progress-bar { transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .theme-card { transition: all 0.3s ease; }
+        .theme-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .locked { opacity: 0.5; position: relative; }
+        .locked::after { content: '🔒'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4rem; }
+        .sound-btn { position: fixed; top: 20px; right: 20px; z-index: 1000; background: white; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s; }
+        .sound-btn:hover { transform: scale(1.1); }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <div id="soundToggle" class="sound-btn" onclick="window.toggleSound()">
+        <span id="soundIcon">🔊</span>
+    </div>
+    <div id="app"></div>
+    <script>
+        const soundEnabled = { value: true };
+        const sounds = {
+            click: () => playBeep(200, 0.1, 'sine'),
+            correct: () => playMelody([{freq: 523, duration: 0.1},{freq: 659, duration: 0.1},{freq: 784, duration: 0.2}]),
+            wrong: () => playBeep(150, 0.3, 'sawtooth'),
+            star: () => playBeep(800, 0.15, 'sine'),
+            unlock: () => playMelody([{freq: 392, duration: 0.1},{freq: 523, duration: 0.1},{freq: 659, duration: 0.15}]),
+            complete: () => playMelody([{freq: 523, duration: 0.1},{freq: 659, duration: 0.1},{freq: 784, duration: 0.1},{freq: 1047, duration: 0.3}])
+        };
+        
+        function playBeep(frequency, duration, type = 'sine') {
+            if (!soundEnabled.value) return;
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                oscillator.frequency.value = frequency;
+                oscillator.type = type;
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + duration);
+            } catch(e) { console.log('Audio not supported'); }
+        }
+        
+        function playMelody(notes) {
+            if (!soundEnabled.value) return;
+            let time = 0;
+            notes.forEach(note => {
+                setTimeout(() => playBeep(note.freq, note.duration), time * 1000);
+                time += note.duration;
+            });
+        }
+        
+        window.toggleSound = function() {
+            soundEnabled.value = !soundEnabled.value;
+            document.getElementById('soundIcon').textContent = soundEnabled.value ? '🔊' : '🔇';
+            if (soundEnabled.value) sounds.click();
+        }
+        
+        function createConfetti() {
+            const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `position:fixed;width:10px;height:10px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*100}%;top:-10px;z-index:9999`;
+                confetti.className = 'confetti';
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 2000);
+            }
+        }
 
+        const ANIMAL_DATABASE = {
+  farm: {
+    name: "Farm Animals",
+    icon: "🐄",
+    color: "green",
+    puzzles: [
+      {
+        id: 1,
+        animal: "Snake",
+        image: "assets/animals/snake.png",
+        start: [0, 0],
+        finish: [8, 6]
+      } 
+farm: {
+    name: "Farm Animals",
+    icon: "🐄",
+    color: "green",
+    level: 1,
+    requiredStars: 0,
+    puzzles: []
+},
+
+wild: {
+    name: "African Wildlife",
+    icon: "🦁",
+    color: "yellow",
+    level: 2,
+    requiredStars: 6,
+    puzzles: []
+},
+
+ocean: {
+    name: "Ocean Animals",
+    icon: "🐠",
+    color: "blue",
+    level: 3,
+    requiredStars: 12,
+    puzzles: []
+}
+        function renderResult(theme, puzzle) {
+            return `<div class="max-w-3xl mx-auto p-4"><div class="bg-white rounded-lg shadow-2xl p-6 mb-4 slide-in"><button onclick="backToThemes()" class="text-blue-600 hover:text-blue-800 font-semibold mb-4">← Back</button><h2 class="text-3xl font-bold text-gray-800">${theme.icon} ${theme.name}</h2></div><div class="bg-white rounded-lg shadow-2xl p-8 fade-in"><div class="text-center mb-6 p-8 rounded-lg ${gameState.isCorrect ? 'bg-green-50' : 'bg-red-50 shake'}"><h2 class="text-4xl font-bold mb-4 ${gameState.isCorrect ? 'text-green-600' : 'text-red-600'}">${gameState.isCorrect ? '✓ CORRECT!' : '✗ INCORRECT'}</h2>${gameState.isCorrect ? `<div class="flex justify-center gap-2 mb-4">${[1, 2, 3].map(i => `<span class="text-5xl star-pop">${i <= gameState.stars ? '⭐' : ''}</span>`).join('')}</div><p class="text-xl text-green-700">${gameState.stars} star${gameState.stars !== 1 ? 's' : ''}!</p>` : `<p class="text-xl text-red-700">Review solution</p>`}</div><div class="mb-6 p-6 bg-blue-50 rounded-lg"><h3 class="text-xl font-bold text-gray-800 mb-3">📚 Solution:</h3><p class="text-gray-700 leading-relaxed text-lg">${puzzle.explanation}</p></div><div class="flex gap-3"><button onclick="retryPuzzle()" class="flex-1 py-3 px-6 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-all">🔄 Retry</button><button onclick="nextPuzzle()" class="flex-1 py-3 px-6 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-all">${gameState.currentPuzzleIndex < theme.puzzles.length - 1 ? 'Next →' : 'Complete ✓'}</button></div></div></div>`;
+        }
+
+        function selectTheme(theme) { sounds.click(); gameState.currentTheme = theme; gameState.currentPuzzleIndex = 0; gameState.selectedAnswer = ''; gameState.inputValue = ''; gameState.showResult = false; gameState.hintsUsed = 0; gameState.stars = 0; render(); }
+        function backToThemes() { sounds.click(); gameState.currentTheme = null; render(); }
+        function rotate arrow(arrow) { sounds.click(); gameState.selectedAnswer = answer; if (answer !== 'conditional') gameState.inputValue = ''; render(); }
+        function updateInput(value) { gameState.inputValue = value; }
+        function useHint() { sounds.click(); if (gameState.hintsUsed < 3) { gameState.hintsUsed++; render(); } }
+        function checkAnswer() {
+            const theme = ANIMAL_DATABASE[gameState.currentTheme];
+const puzzle = theme.puzzles[gameState.currentPuzzleIndex];
+
+// Check if the player's arrows form a complete path
+let correct = checkPath(puzzle);
+
+gameState.isCorrect = correct;
+            if (correct) {
+                sounds.correct();
+                if (gameState.hintsUsed === 0) gameState.stars = 3;
+                else if (gameState.hintsUsed === 1) gameState.stars = 2;
+                else gameState.stars = 1;
+                gameState.totalStars += gameState.stars;
+                gameState.themeStars[gameState.currentTheme] = (gameState.themeStars[gameState.currentTheme] || 0) + gameState.stars;
+                for (let i = 0; i < gameState.stars; i++) {
+                    setTimeout(() => sounds.star(), i * 200);
+                }
+                Object.keys(PUZZLE_DATABASE).forEach(key => {
+                    if (!gameState.unlockedThemes.includes(key) && isThemeUnlocked(key)) {
+                        gameState.unlockedThemes.push(key);
+                        setTimeout(() => {
+                            sounds.unlock();
+                            alert(`🎉 Unlocked: ${PUZZLE_DATABASE[key].name}!`);
+                        }, 1000);
+                    }
+                });
+                const themeCompleted = gameState.currentPuzzleIndex === theme.puzzles.length - 1;
+                if (themeCompleted) {
+                    setTimeout(() => {
+                        sounds.complete();
+                        createConfetti();
+                    }, 800);
+                }
+            } else {
+                sounds.wrong();
+            }
+            gameState.showResult = true;
+            render();
+        }
+        function retryPuzzle() { sounds.click(); gameState.selectedAnswer = ''; gameState.inputValue = ''; gameState.showResult = false; gameState.isCorrect = false; gameState.stars = 0; gameState.hintsUsed = 0; render(); }
+        function nextPuzzle() {
+            sounds.click();
+                            backToThemes();
+            }
+        }
+        function render() { document.getElementById('app').innerHTML = !gameState.currentTheme ? renderThemeSelection() : renderPuzzle(); }
+        render();
+    </script>
+</body>
+</html>
